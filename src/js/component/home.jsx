@@ -85,7 +85,7 @@ const Home = () => {
 					<button className="btn btn-outline-secondary" type="button" id="button-addon2" onClick={addInput}>Enviar</button>
 				</div>
 				<p>El valor del input es <strong> {input}</strong></p>
-				{loading ? <p>Cargando</p> : <> {taskList.map((element, index)=> {return <> <p className="taskList">{element.label} <button onClick={()=> deleteInput(index)}>x</button></p> </> }   )} </>}
+				{loading ? <p>Cargando</p> : <> {taskList.map((element, index)=> {return <> <p className="taskList d-flex align-items-center justify-content-center">{element.label} <button className="btn btn-danger ms-2 px-2" onClick={()=> deleteInput(index)}>x</button></p> </> }   )} </>}
 				
 			</div>
 			</>
