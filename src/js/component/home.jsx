@@ -52,14 +52,16 @@ const Home = () => {
 			.catch(error => console.error('Error:', error));
 		}
 
-	const deleteInput = (element, index)=>{
-			
-		setTaskList(taskList.splice(index, 1))
+	const deleteInput = (index)=>{
+			taskList.splice(index, 1)
+			console.log()
+
+		
 		
 
 		fetch("https://assets.breatheco.de/apis/fake/todos/user/pablotorbio", {
 			method: 'PUT',
-			body: JSON.stringify(taskList.splice(index, 1)), // data can be `string` or {object}!
+			body: JSON.stringify(taskList), // data can be `string` or {object}!
 			headers:{
 				'Content-Type': 'application/json'
 			}
@@ -78,10 +80,12 @@ const Home = () => {
 			<>	
 			<div>
 				<h1>To Do List With Fetch</h1>
-				<input type="text" onChange={handleChange}/>
-				<button onClick={addInput}>Enviar</button>
+				<div class="input-group mb-3 w-25 mx-auto my-4">
+					<input type="text" className="form-control" placeholder="Task" aria-label="Task" aria-describedby="button-addon2" onChange={handleChange}/>
+					<button className="btn btn-outline-secondary" type="button" id="button-addon2" onClick={addInput}>Enviar</button>
+				</div>
 				<p>El valor del input es <strong> {input}</strong></p>
-				{loading ? <p>Cargando</p> : <> {taskList.map((element, index)=> {return <> <p className="">{element.label} <button onClick={deleteInput}>x</button></p> </> }   )} </>}
+				{loading ? <p>Cargando</p> : <> {taskList.map((element, index)=> {return <> <p className="taskList">{element.label} <button onClick={()=> deleteInput(index)}>x</button></p> </> }   )} </>}
 				
 			</div>
 			</>
